@@ -8,6 +8,7 @@ pluginManagement {
             }
         }
         mavenCentral()
+        maven(url = "https://dl.google.com/dl/android/maven2")
         gradlePluginPortal()
     }
 }
@@ -15,6 +16,7 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
+        maven(url = "https://jitpack.io")
         mavenCentral()
     }
 }

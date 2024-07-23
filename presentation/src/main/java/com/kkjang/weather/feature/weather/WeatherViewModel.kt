@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.kkjang.data.module.provider.ResourcesProvider
 import com.kkjang.data.util.default
 import com.kkjang.domain.usecase.GetWeatherUseCase
-import com.kkjang.weather.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
