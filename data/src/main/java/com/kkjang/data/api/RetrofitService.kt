@@ -11,7 +11,7 @@ interface RetrofitService {
     @GET("data/2.5/weather")
     suspend fun getWeatherAPI(
         @Query("q") q: String,
-        @Query("appid") appid: String
+        @Query("appid") appId: String
     ) : WeatherDto
 
     companion object {
