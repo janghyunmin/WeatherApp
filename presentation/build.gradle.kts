@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    id("kotlin-kapt")
     id("kotlin-parcelize")
-
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -46,7 +48,23 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += setOf(
+                "META-INF/DEPENDENCIES",
+                "META-INF/DEPENDENCIES.txt",
+                "META-INF/dependencies.txt",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/license.txt",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt",
+                "META-INF/notice.txt",
+                "META-INF/LGPL2.1",
+                "META-INF/ASL2.0",
+                "build.xml",
+                "META-INF/rxjava.properties",
+                "META-INF/proguard/androidx-annotations.pro",
+                "META-INF/gradle/incremental.annotation.processors",
+            )
         }
     }
 }
@@ -82,11 +100,12 @@ dependencies {
     implementation(libs.navigation.compose)
 
     // Hilt
-    implementation(libs.hilt.compiler)
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.hilt.navigation.fragment)
-    implementation(libs.hilt.work)
+//    implementation(libs.hilt.work)
+    implementation(libs.google.hilt)
+    kapt(libs.google.hilt.compiler)
 
     // Room
     implementation(libs.room.common)

@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    id("kotlin-kapt")
     id("kotlin-parcelize")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -49,8 +52,11 @@ dependencies {
     implementation(libs.sqlite.cipher)
 
     // Hilt
+    implementation(libs.hilt.navigation)
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.navigation.fragment)
     implementation(libs.google.hilt)
-    implementation(libs.google.hilt.compiler)
+    kapt(libs.google.hilt.compiler)
 
     // Network
     implementation(libs.okhttp)

@@ -8,4 +8,12 @@ interface WeatherRepository {
         q: String,
         appId: String,
     ) : Flow<WeatherVo>
+
+    fun getLocationWeather(
+        lat: Double,
+        lon: Double,
+        lang: String,
+        units: String,
+        appId: String,
+    ) : Flow<WeatherVo>
 }
