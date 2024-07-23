@@ -14,4 +14,14 @@ class WeatherRepositoryImpl(
     override fun getWeather(q: String, appId: String): Flow<WeatherVo> = flow {
         emit(weatherRemoteDataSource.getWeather(q, appId).mapperToWeatherVo())
     }
+
+    override fun getLocationWeather(
+        lat: Double,
+        lon: Double,
+        lang: String,
+        units: String,
+        appId: String
+    ): Flow<WeatherVo> = flow {
+        emit(weatherRemoteDataSource.getLocationWeather(lat, lon, lang, units, appId).mapperToWeatherVo())
+    }
 }

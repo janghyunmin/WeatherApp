@@ -18,7 +18,7 @@ data class WeatherDto(
     @SerializedName("sys") var sys: SysDto?,
     @SerializedName("timezone") var timezone: Long?,
     @SerializedName("id") var id: Long?,
-    @SerializedName("name") var name: String?,
+    @SerializedName("name") var name: String?, // 지역 이름
     @SerializedName("cod") var cod: Int?
 ) : Parcelable
 
@@ -39,31 +39,31 @@ data class WeatherItemDto(
 
 @Parcelize
 data class MainDto(
-    @SerializedName("temp") var temp: Double?,
-    @SerializedName("feels_like") var feels_like: Double?,
-    @SerializedName("temp_min") var temp_min: Double?,
-    @SerializedName("temp_max") var temp_max: Double?,
-    @SerializedName("pressure") var pressure: Int?,
-    @SerializedName("humidity") var humidity: Int?,
+    @SerializedName("temp") var temp: Double?, // 현재 온도
+    @SerializedName("feels_like") var feels_like: Double?, // 체감 온도
+    @SerializedName("temp_min") var temp_min: Double?, // 최저 기온
+    @SerializedName("temp_max") var temp_max: Double?, // 최고 기온
+    @SerializedName("pressure") var pressure: Int?, // 기압
+    @SerializedName("humidity") var humidity: Int?, // 습도
     @SerializedName("sea_level") var sea_level: Int?,
-    @SerializedName("grnd_level") var grnd_level: Int?,
+    @SerializedName("grnd_level") var grnd_level: Int?, // 땅
 ) : Parcelable
 
 @Parcelize
 data class WindDto(
-    @SerializedName("speed") var speed: Double?,
-    @SerializedName("deg") var deg: Int?,
-    @SerializedName("gust") var gust: Double?
+    @SerializedName("speed") var speed: Double?, // 풍속
+    @SerializedName("deg") var deg: Int?, // 풍향
+    @SerializedName("gust") var gust: Double? // 바람
 ) : Parcelable
 
 @Parcelize
 data class RainDto(
-    @SerializedName("1h") var _1h: Double?
+    @SerializedName("1h") var _1h: Double? // 1시간
 ) : Parcelable
 
 @Parcelize
 data class CloudsDto(
-    @SerializedName("all") var all: Int?
+    @SerializedName("all") var all: Int? // 구름
 ) : Parcelable
 
 @Parcelize

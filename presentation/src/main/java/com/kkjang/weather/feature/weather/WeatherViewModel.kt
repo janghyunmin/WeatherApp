@@ -26,7 +26,24 @@ class WeatherViewModel @Inject constructor(
 
     fun getWeather(q: String, appId: String) {
         viewModelScope.launch {
-            getWeatherUseCase.invoke(q = q, appId = appId)
+            getWeatherUseCase.getWeather(q = q, appId = appId)
+                .onStart {
+                    _weatherState.value = GetWeatherState.Loading(true)
+                }
+                .catch { exception ->
+                    _weatherState.value = GetWeatherState.Loading(false)
+                    _weatherState.value = GetWeatherState.Fail(exception.message.default())
+                }
+                .collect {
+                    _weatherState.value = GetWeatherState.Loading(false)
+                    _weatherState.value = GetWeatherState.Success(it)
+                }
+        }
+    }
+
+    fun getLocationWeather(lat: Double, lon: Double, lang: String, units: String, appId: String) {
+        viewModelScope.launch {
+            getWeatherUseCase.getLocationWeather(lat, lon, lang, units, appId)
                 .onStart {
                     _weatherState.value = GetWeatherState.Loading(true)
                 }

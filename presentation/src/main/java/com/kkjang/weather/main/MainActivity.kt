@@ -39,9 +39,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ){
-                    viewModel.getWeather(q = "seoul", appId = RetrofitService.API_KEY)
+//                    viewModel.getWeather(q = "seoul", appId = RetrofitService.API_KEY)
+                    viewModel.getLocationWeather(lat = 37.54546372, lon = 126.675961, lang = "kr", units = "metric", appId = RetrofitService.API_KEY)
 
-                    WeatherViewModel(viewModel = viewModel)
+//                    WeatherViewModel(viewModel = viewModel)
+                    LocationWeatherViewModel(viewModel = viewModel)
                 }
             }
         }
@@ -66,5 +68,23 @@ fun WeatherViewModel(viewModel: WeatherViewModel) {
             Log.e("Weather API Fail", (weatherState as GetWeatherState.Fail).message)
         }
     }
+}
 
+@Composable
+fun LocationWeatherViewModel(viewModel: WeatherViewModel) {
+    val weatherState by viewModel.weatherState.collectAsState()
+    when(weatherState) {
+        is GetWeatherState.Init -> {
+            Log.i("Location API : " ,"Init")
+        }
+        is GetWeatherState.Loading -> {
+            Log.v("Location API : ","Loading")
+        }
+        is GetWeatherState.Success -> {
+            Log.d("Location API : ","${(weatherState as GetWeatherState.Success).response.main}")
+        }
+        is GetWeatherState.Fail -> {
+            Log.e("Location API Fail", (weatherState as GetWeatherState.Fail).message)
+        }
+    }
 }
