@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -43,7 +44,26 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // SqlLite
+    implementation(libs.sqlite)
+    implementation(libs.sqlite.cipher)
+
+    // Hilt
     implementation(libs.google.hilt)
     implementation(libs.google.hilt.compiler)
+
+    // Network
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.urlconnection)
+    implementation(libs.okhttp.interceptor)
+    implementation(libs.retrofit)
+    implementation(libs.gson)
+
+    // Retrofit
+    implementation(libs.retrofit.scalars)
+    implementation(libs.retrofit.simplexml)
+    implementation(libs.retrofit.gson)
+    implementation(libs.retrofit.adapter.rxjava2)
+    implementation(libs.retrofit.jaxb)
 
 }
