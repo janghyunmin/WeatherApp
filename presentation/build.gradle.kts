@@ -51,7 +51,6 @@ android {
 
 dependencies {
 
-    implementation(project(":presentation"))
     implementation(project(":data"))
     implementation(project(":domain"))
 
@@ -70,4 +69,36 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // AndroidX Navigation
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui)
+    implementation(libs.navigation.ui.ktx)
+    implementation(libs.navigation.dynamic.feature.fragment)
+    implementation(libs.navigation.testing)
+    implementation(libs.navigation.compose)
+
+    // Hilt
+    implementation(libs.hilt.compiler)
+    implementation(libs.hilt.navigation)
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.navigation.fragment)
+    implementation(libs.hilt.work)
+
+    // Room
+    implementation(libs.room.common)
+    annotationProcessor(libs.room.compiler)
+    implementation(libs.room.ktx)
+    implementation(libs.room.rxjava2)
+    implementation(libs.room.rxjava3)
+    implementation(libs.room.guava)
+    implementation(libs.room.testing)
+    implementation(libs.room.paging)
+
+    // Network
+    implementation(libs.okhttp)
+    implementation(libs.retrofit)
+    implementation(libs.gson)
+
 }
