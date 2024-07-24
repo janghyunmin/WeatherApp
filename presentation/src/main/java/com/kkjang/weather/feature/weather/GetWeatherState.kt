@@ -8,3 +8,4 @@ sealed class GetWeatherState {
     data class Success(val response: WeatherVo) : GetWeatherState()
     data class Fail(val message: String) : GetWeatherState()
 }
+

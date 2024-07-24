@@ -103,7 +103,6 @@ dependencies {
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.hilt.navigation.fragment)
-//    implementation(libs.hilt.work)
     implementation(libs.google.hilt)
     kapt(libs.google.hilt.compiler)
 
@@ -121,5 +120,11 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.retrofit)
     implementation(libs.gson)
+
+    // Location
+    implementation(libs.google.play.services.location)
+
+    // TedPermission
+    implementation(libs.ted.park.permission)
 
 }
