@@ -12,9 +12,13 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -28,13 +32,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import com.kkjang.data.api.RetrofitService
+import com.kkjang.weather.R
 import com.kkjang.weather.feature.weather.GetWeatherState
 import com.kkjang.weather.feature.weather.PermissionState
 import com.kkjang.weather.feature.weather.WeatherViewModel
@@ -72,7 +85,6 @@ class MainActivity : ComponentActivity(), PermissionListener {
                         Log.i("permissionState ", "$permissionState")
                         when (permissionState) {
                             PermissionState.LOADING -> {
-                                // Permission checking is ongoing
                                 Text(text = "Checking permissions...")
                             }
 
@@ -160,6 +172,30 @@ fun LocationWeatherViewModel(viewModel: WeatherViewModel) {
     }
 }
 
+
+@Composable
+fun TopScreen() {
+    Row(modifier = Modifier.fillMaxWidth().height(80.dp)) {
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(ContextCompat.getDrawable(LocalContext.current, R.drawable.ic_x48_location))
+                .crossfade(true)
+                .build(),
+            placeholder = painterResource(R.drawable.ic_x48_location),
+            contentDescription = stringResource(R.string.app_name),
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.clip(CircleShape).padding(16.dp)
+        )
+    }
+
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TopScreenPreView() {
+    TopScreen()
+}
+
 @Composable
 private fun LoadingHomeScreen() {
     val strokeWidth = 5.dp
@@ -181,7 +217,8 @@ private fun LoadingHomeScreen() {
 @Composable
 fun PermissionDeniedScreen() {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .padding(start = 16.dp, end = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
