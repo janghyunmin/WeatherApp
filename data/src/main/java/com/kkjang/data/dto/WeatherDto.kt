@@ -33,7 +33,7 @@ data class CoordDto(
 data class WeatherItemDto(
     @SerializedName("id") var id: Int?,
     @SerializedName("main") var main: String?,
-    @SerializedName("description") var description: String?,
+    @SerializedName("description") var description: String?, // 현재 날씨
     @SerializedName("icon") var icon: String?
 ) : Parcelable
 
