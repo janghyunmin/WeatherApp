@@ -31,5 +31,6 @@ interface RetrofitService {
     companion object {
         const val BASE_URL = "http://api.openweathermap.org/"
         const val API_KEY = "704ebb3687ad13b8fcc4bc35cb64941c"
+        const val IMG_URL = "https://openweathermap.org/img/wn/"
     }
 }

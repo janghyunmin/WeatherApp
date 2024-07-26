@@ -15,8 +15,10 @@ import com.kkjang.data.util.default
 import com.kkjang.domain.usecase.GetWeatherUseCase
 import com.kkjang.weather.main.MainActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
@@ -39,6 +41,11 @@ class WeatherViewModel @Inject constructor(
     // 나의 위치 위도 , 경도
     private val _locationState = MutableStateFlow<Location?>(null)
     val locationState = _locationState.asStateFlow()
+
+    // 주소를 저장할 StateFlow
+    private val _addressLine = MutableStateFlow<String>("")
+    val addressLine: StateFlow<String> get() = _addressLine
+
 
     // Fail 시 SnackBar Event
     private val _toastEvent = Channel<String>()
@@ -80,7 +87,6 @@ class WeatherViewModel @Inject constructor(
     }
 
 
-
     @SuppressLint("MissingPermission")
     fun getLocation(activity: MainActivity) {
         val fusedLocationProviderClient =
@@ -98,4 +104,22 @@ class WeatherViewModel @Inject constructor(
                 }
             }
     }
+
+    fun getAddress(context: Context, lat: Double, lng: Double): List<Address>? {
+        lateinit var address: List<Address>
+
+        return try {
+            val geocoder = Geocoder(context, Locale.KOREA)
+            address = geocoder.getFromLocation(lat, lng, 1) as List<Address>
+            address
+        } catch (e: IOException) {
+            null
+        }
+    }
+
+    fun setAddress(address: String) {
+        _addressLine.value = address
+    }
+
+
 }

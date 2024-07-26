@@ -124,6 +124,9 @@ dependencies {
     // Location
     implementation(libs.google.play.services.location)
 
+    // Coil
+    implementation(libs.coil)
+
     // TedPermission
     implementation(libs.ted.park.permission)
 
