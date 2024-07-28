@@ -97,7 +97,8 @@ class MainActivity : ComponentActivity(), PermissionListener {
         setContent {
             WeatherTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier
+                        .fillMaxSize()
                         .background(
                             brush = Brush.verticalGradient(
                                 colors = listOf(
@@ -121,7 +122,7 @@ class MainActivity : ComponentActivity(), PermissionListener {
                         Log.i("permissionState ", "$permissionState")
                         when (permissionState) {
                             PermissionState.LOADING -> {
-                                Text(text = "Checking permissions...")
+                                LoadingHomeScreen()
                             }
 
                             // 위치 정보 권한 허용
@@ -218,6 +219,7 @@ fun LocationWeatherViewModel(viewModel: WeatherViewModel) {
         }
 
         is GetWeatherState.Loading -> {
+            LoadingHomeScreen()
             Log.v("Location API : ", "Loading")
         }
 
@@ -266,7 +268,7 @@ fun LocationComponent(weatherVo: WeatherVo, viewModel: WeatherViewModel) {
         Spacer(modifier = Modifier.width(8.dp)) // 이미지와 텍스트 사이의 여유 공간을 16.dp로 설정
         Text(
             modifier = Modifier
-                .wrapContentSize()
+                .width(150.dp)
                 .wrapContentHeight()
             ,
             text = formattedAddress,
@@ -304,10 +306,10 @@ fun LocationComponentPreView() {
         Spacer(modifier = Modifier.width(8.dp)) // 이미지와 텍스트 사이의 여유 공간을 16.dp로 설정
         Text(
             modifier = Modifier
-                .wrapContentSize()
+                .width(150.dp)
                 .wrapContentHeight()
             ,
-            text = "서울특별시 영등포구 의사당대로 82",
+            text = "서울특별시 영등포구 의사당대로 82dsadasdasdasdsadasdaddada",
             style = TextStyle(
                 color = Color.Black,
                 fontSize = 16.sp
@@ -336,6 +338,9 @@ fun MainScreen(weatherVo: WeatherVo, viewModel: WeatherViewModel) {
                 WeatherIconComponent(
                     modifier = Modifier.wrapContentSize(),
                     imgUrl = RetrofitService.IMG_URL+ weatherVo.weahter.first().icon + "@2x.png"
+                )
+                Log.e("아이콘 경로 : ",
+                    RetrofitService.IMG_URL+ weatherVo.weahter.first().icon + "@2x.png"
                 )
             }
 
