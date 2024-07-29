@@ -5,12 +5,9 @@
 
 
 https://github.com/user-attachments/assets/8b4d1e65-b259-4962-8e2d-37eb52f31cb2
+
 https://github.com/user-attachments/assets/90a0f867-0a50-45f2-ba72-d82877b06c20
 
-
-
-
-(↑프로젝트를 대표하는 대표 이미지 불러와 표시해주기)
 
 ## ⭐ Main Feature
 ### 나의 위치 정보를 조회
